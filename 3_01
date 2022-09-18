@@ -1,0 +1,104 @@
+def AS(L):
+  suma=0
+  for i in L:
+    suma+=i
+  return suma/len(L)
+
+L={1,2,3,4,5}
+print(AS(L))
+-----------------------------------------------------------------------------------------
+def extrem(L, flag): 
+  ekstrem=L[0]
+  for i in L: 
+    if flag>0 :
+      if i > ekstrem:
+        ekstrem = i 
+    else :
+      if i<ekstrem:
+        ekstrem = i
+  return ekstrem
+
+L=[1,2,3,4,5]
+flag=int(input())
+print(extrem(L,flag))
+-----------------------------------------------------------------------------------------
+def extremIndeks(L,flag) :
+  x = extrem(L, flag)
+  for i in range(len(L)):
+    if L[i]==x :
+      return i
+
+L=[1,2,3,4,5]
+flag=int(input())
+print(extremIndeks(L,flag))
+-----------------------------------------------------------------------------------------
+def u10(L,b):
+  x=0
+  for i in range(len(L)):
+    if i<b:
+     x += L[i] * pow(b, len(L) - i - 1)
+    elif isinstance(L[i], str):
+      if ord(L[i].upper()) - 55 >= b: return -1
+      x += (ord(L[i].upper()) - 55) * pow(b, len(L) - i - 1)
+    else:
+      return -1
+  return x
+  
+L=[10,0,11]
+b=13
+print(u10(L,b))
+-----------------------------------------------------------------------------------------
+def iz10(n,b):
+  L=[]
+  while(n):
+    L.append(n%b)
+    n=n//b
+  L.reverse()
+  return L
+
+n=183
+b=16
+print(iz10(n,b))
+-----------------------------------------------------------------------------------------
+def pzLS(L):
+  string = ""
+  for i in L:
+    if i < 10 :
+      string+=str(i)
+    else :
+      string+=str(chr(i+55))
+  return string
+
+L=[11,7]
+print(pzLS(L))
+-----------------------------------------------------------------------------------------
+def pzSL(S):
+  L = []
+  for i in S:
+    if (i >= 'a' and i <= 'z') or (i >= 'A' and i <= 'Z') :
+      L.append(ord(i)-55)
+    else :
+      L.append(int(i))
+  return L
+
+S="B7"
+print(pzSL(S))
+-----------------------------------------------------------------------------------------
+def pzPromenaOsnove(S,b1,b2) :
+  L = []
+  for i in S:
+    if (i >= 'a' and i <= 'z') or (i >= 'A' and i <= 'Z') :
+      L.append(ord(i)-55)
+    else :
+      L.append(int(i))
+  n=u10(L,b1)
+  if n==-1:
+    return -1
+  L=iz10(n,b2)
+  return L
+
+S="135"
+b1=6
+b2=20
+print(pzPromenaOsnove(S,b1,b2))
+  
