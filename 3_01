@@ -115,4 +115,3 @@ S="135"
 b1=6
 b2=20
 print(pzPromenaOsnove(S,b1,b2))
-  
