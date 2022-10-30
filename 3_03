@@ -1,0 +1,120 @@
+v=rng.integers(-10,11,20)
+v
+#rezultat toga: array([  2, -10, -10,   5,   1,  -2,  -3,  10,  -2,  -7,  -8,   5,   3,
+#                        3,   4,  -1,  -5,  -5,  -4,   5])
+
+#a)
+    v[v<0]
+    #rezultat toga: array([-10, -10,  -2,  -3,  -2,  -7,  -8,  -1,  -5,  -5,  -4])
+    
+#b)
+    v[v%2==0]
+    #rezultat toga: array([  2, -10, -10,  -2,  10,  -2,  -8,   4,  -4])
+    
+#v) 
+    v[np.logical_and(v%3==0, v>0)]
+    #rezultat toga: array([3, 3])
+    
+#g) 
+    v[v%4!=0]
+    #rezultat toga: array([  2, -10, -10,   5,   1,  -2,  -3,  10,  -2,  -7,   5,   3,   3,
+    #                       -1,  -5,  -5,   5])
+    
+#d)
+     np.flatnonzero(v==v.max())
+     #rezultat toga: array([7])
+     
+#đ)
+    v[:-1]
+    #rezultat toga: array([2, -10, -10,   5,   1,  -2,  -3,  10,  -2,  -7,  -8,   5,   3,
+    #                      3,   4,  -1,  -5,  -5,  -4])
+    
+    (v[:-1])[v[:-1]>v[1:]]
+    #rezultat toga: array([2, 5, 1, -2, 10, -2, -7, 5, 4, -1])
+    
+#e)
+    (v[1:])[v[1:]>v[:-1]]
+    #rezultat toga: array([5, 10, 5, 4, -4, 5])
+
+#ž)
+    v[v>np.hstack((v[1], (v[2:]+v[:-2])/2,v[-2]))]
+    #rezultat toga: array([2, 5, 10, 5, 4, 5])
+
+#z)
+    (v[v%2==1]).size>0 #da li vektor sadrzi neparan broj
+    #rezultat toga: True
+    
+    (v[v%2==1]).size == v.size #da li su svi elementi vektora neparni
+    #rezultat toga: False
+    
+#i)
+    v[1::2][v[1::2]%2==1]
+    #rezultat toga: array([5, -7, 5, 3, -1, -5, 5])
+
+#j) 
+    def f(n): 
+      n=abs(n)
+      if n==2 or n==3: 
+        return True
+      return not(n==1 or n%2==0 or n%3==0)
+      
+    v[np.vectorize(f)(v)] #vectorize broadcastuje funkciju na vektor v
+    #rezultat toga: array([2, 5, -2, -3, -2, -7, 5, 3, 3, -5, -5, 5])
+    
+-----------------------------------------------------------------------------------------------------------------------------------
+
+M=rng.integers(1,11,(6,6))
+M
+#rezultat toga: array([[ 3,  2,  3, 10,  8,  8],
+#                      [10,  6,  2,  1,  7,  2],
+#                      [ 3,  2, 10,  2,  5,  3],
+#                      [ 1,  2,  7, 10,  9,  1],
+#                      [ 1, 10,  2,  2,  1,  7],
+#                      [ 1,  6,  6,  6,  1,  9]])
+
+#a)
+    M[M==M.max()] += 1
+    M
+    #rezultat toga: array([[ 3,  2,  3, 11,  8,  8],
+    #                      [11,  6,  2,  1,  7,  2],
+    #                      [ 3,  2, 11,  2,  5,  3],
+    #                      [ 1,  2,  7, 11,  9,  1],
+    #                      [ 1, 11,  2,  2,  1,  7],
+    #                      [ 1,  6,  6,  6,  1,  9]])
+    
+    
+    #b)
+        A = M[np.arange(0,6),np.arange(0,6)]
+        A[A > M.mean()] # M.mean() racuna srednju vrednost svih elemenata matrice
+        #rezultat toga: array([ 6, 11, 11,  9])
+        
+        
+    #v)
+        Sk = M.sum(axis=0) #sume po kolonama
+        Sk
+        #rezultat toga: array([20, 29, 31, 33, 31, 30])
+        
+        Sk.mean() #prosecna suma po kolonama
+        #rezultat toga: 29.0
+        
+        M[:,np.flatnonzero(Sk>Sk.mean())]
+        #rezultat toga: array([[ 3, 11,  8,  8],
+        #                      [ 2,  1,  7,  2],
+        #                      [11,  2,  5,  3],
+        #                      [ 7, 11,  9,  1],
+        #                      [ 2,  2,  1,  7],
+        #                      [ 6,  6,  1,  9]])
+        
+        
+    #g)
+        Sv = M.sum(axis=1) #sume po vrstama
+        Sv
+        #rezultat toga: array([35, 29, 26, 31, 24, 29])
+        
+        Sv.mean() #prosecna suma po vrstama
+        #rezultat toga: 29.0
+        
+        M[np.flatnonzero(Sv>Sv.mean()),:]
+        #rezultat toga: array([[ 3,  2,  3, 11,  8,  8],
+        #                      [ 1,  2,  7, 11,  9,  1]])
+        
