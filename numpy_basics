@@ -1,0 +1,133 @@
+import numpy as np
+
+a=np.array([[1,2,3],[4,5,6]]) #kreiranje numpy niza 'a'
+print(a)
+
+#rezultat:
+#[[1 2 3]
+# [4 5 6]]
+
+a.ndim  #broj dimenzija niza a
+
+#2
+
+a.shape #oblik niza a (n,m)
+
+#(2, 3)
+
+a.size #ukupan broj elemenata niza
+
+#6
+
+a.dtype #tip podataka elemenata niza
+
+#dtype('int64')
+
+a.itemsize #velicina u bajtima elementa niza
+
+#8
+
+b=np.array([[8,2],[5,9]], dtype=complex) #kada kreiramo numpy niz mozemo mu odrediti tip podatka elemenata
+b
+
+#array([[8.+0.j, 2.+0.j],
+#      [5.+0.j, 9.+0.j]])
+
+np.zeros((3,3)) #kreira numpy niz ciji elementi su nule, u argumentu ima samo JEDAN argument koji predstavlja shape niza koji pravimo
+
+#array([[0., 0., 0., 0.],
+#      [0., 0., 0., 0.],
+#      [0., 0., 0., 0.],
+#      [0., 0., 0., 0.]])
+
+np.ones((3,3)) #kreira numpy niz ciji elementi su jedinice, u argumentu ima samo JEDAN argument koji predstavlja shape niza koji pravimo
+
+#array([[1., 1., 1.],
+#      [1., 1., 1.],
+#      [1., 1., 1.]])
+
+np.empty((5,3)) #vraca zateceno stanje iz memorije (ostalo od nekog prethodnog koriscenja odgovarajucih bajtovi memoriji)
+
+#array([[2.97315267e-316, 0.00000000e+000, 0.00000000e+000],
+#      [0.00000000e+000, 0.00000000e+000, 0.00000000e+000],
+#      [0.00000000e+000, 0.00000000e+000, 0.00000000e+000],
+#      [0.00000000e+000, 6.93530572e-310, 5.60335549e-302],
+#      [0.00000000e+000, 0.00000000e+000, 6.93530572e-310]])
+
+np.arange(0,10) # radi veoma slicno kao range samo sto kreira numpy niz
+
+#array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+np.arange(0,-10,-0.1)# za razliku od python-ovog range-a step moze biti realan
+
+#array([ 0. , -0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.8, -0.9, -1. ,
+#      -1.1, -1.2, -1.3, -1.4, -1.5, -1.6, -1.7, -1.8, -1.9, -2. , -2.1,
+#      -2.2, -2.3, -2.4, -2.5, -2.6, -2.7, -2.8, -2.9, -3. , -3.1, -3.2,
+#      -3.3, -3.4, -3.5, -3.6, -3.7, -3.8, -3.9, -4. , -4.1, -4.2, -4.3,
+#      -4.4, -4.5, -4.6, -4.7, -4.8, -4.9, -5. , -5.1, -5.2, -5.3, -5.4,
+#      -5.5, -5.6, -5.7, -5.8, -5.9, -6. , -6.1, -6.2, -6.3, -6.4, -6.5,
+#      -6.6, -6.7, -6.8, -6.9, -7. , -7.1, -7.2, -7.3, -7.4, -7.5, -7.6,
+#      -7.7, -7.8, -7.9, -8. , -8.1, -8.2, -8.3, -8.4, -8.5, -8.6, -8.7,
+#      -8.8, -8.9, -9. , -9.1, -9.2, -9.3, -9.4, -9.5, -9.6, -9.7, -9.8,
+#      -9.9])
+
+np.linspace(0,1,5) #np.linspace(od,do,n) vraca niz od n brojeva od kojih je prvi od, poslednji do i svi uzastopni u nizu se razlikuju podjednako
+
+#array([0.  , 0.25, 0.5 , 0.75, 1.  ])
+
+c=np.zeros((4,3)) #kreiramo numpy niz ciji je shape 4,3 i elementi su nule
+c
+
+#array([[0., 0., 0.],
+#      [0., 0., 0.],
+#      [0., 0., 0.],
+#      [0., 0., 0.]])
+
+c.reshape((2,6)) #funkcijom reshape menjamo shape niza 'c'
+
+#array([[0., 0., 0., 0., 0., 0.],
+#      [0., 0., 0., 0., 0., 0.]])
+
+
+c.reshape((12,1)) #funkcijom reshape menjamo shape niza 'c'
+
+#array([[0.],
+#      [0.],
+#      [0.],
+#      [0.],
+#      [0.],
+#      [0.],
+#      [0.],
+#      [0.],
+#      [0.],
+#      [0.],
+#      [0.],
+#      [0.]])
+
+c #niz 'c' se ne menja
+
+#array([[0., 0., 0.],
+#      [0., 0., 0.],
+#      [0., 0., 0.],
+#      [0., 0., 0.]])
+
+d=np.arange(0,10,1).reshape((5,2)) #kreiramo numpy niz 'd' preko funkcija arange i reshape koje ce da definisu elemente i shape niza
+d
+
+#array([[0, 1],
+#      [2, 3],
+#      [4, 5],
+#      [6, 7],
+#      [8, 9]])
+
+d
+
+#array([[0, 1],
+#      [2, 3],
+#      [4, 5],
+#      [6, 7],
+#      [8, 9]])
+
+print("d[1]:",d[1] ,"  d[0][1]:",d[0][1] ,"  d[-1][1]:",d[-1][1] ,"  d[0,1]:",d[0,1] ,"  d[-1,1]:",d[-1,1]) #stampamo elemente numpy niza 'd' preko indeksa
+
+#d[1]: [2 3]   d[0][1]: 1   d[-1][1]: 9   d[0,1]: 1   d[-1,1]: 9
