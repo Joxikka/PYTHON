@@ -1,0 +1,138 @@
+a=["string", 2, 5.26]
+a
+
+#['string', 2, 5.26]
+
+
+#indeksiranje - pristup clanovima:
+
+a[0]      #clan liste a sa indeksom 0
+#'string'
+
+a[-1]     #indeksiranje isto radi kao i kod stringova
+#5.26
+
+
+#slicing:
+
+a[1:2]
+#[2]
+
+a[:2]
+#a[:2]
+
+
+#spajanje listi je isto kao kod stringova, operacija '+'
+
+a+a
+#['string', 2, 5.26, 'string', 2, 5.26]
+
+3*a
+#['string', 2, 5.26, 'string', 2, 5.26, 'string', 2, 5.26]
+
+
+#clanove liste mozemo menjati:
+
+a[-1]='drugi tip'
+a
+
+#['string', 2, 'drugi tip']
+
+
+#ukoliko je element liste string, mozemo pristupiti nekom njegovom characteru:
+
+(a[-1])[-1]
+#'p'
+
+
+#dodavanje elementa na kraj liste:
+
+a.append(100)
+a
+
+#['string', 2, 'drugi tip', 100]
+
+
+#duzina liste - funkcija len:
+
+len(a)
+#4
+
+#clan liste moze biti bilo koji podatak pa cak i lista:
+
+a.append([2,5,3,7])
+a
+
+#['string', 2, 'drugi tip', 100, [2, 5, 3, 7]]
+
+
+#if:
+
+x=int(input())
+if x<0:
+  x=-1
+elif x>0:
+  x=1
+print(x)
+
+#-15
+#-1
+
+
+#funkcija range:
+
+if range(5)==[0,1,2,3,4]: print("super")
+else: print("ipak nije")
+
+#ipak nije
+#range(0, 15)
+
+
+#for:
+
+for i in a:
+  print(i)
+
+#string
+#2
+#drugi tip
+#100
+#[2, 5, 3, 7]
+
+
+for i in range(5): print(i*i)
+
+#0
+#1
+#4
+#9
+#16
+
+
+print(range(2,14))
+
+#range(2, 14)
+
+for i in range(2,14): print(i)
+
+#2
+#3
+#4
+#5
+#6
+#7
+#8
+#9
+#10
+#11
+#12
+#13
+
+for i in range (2,14,3): print(i)
+
+#2
+#5
+#8
+#11
+
+
