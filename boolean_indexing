@@ -1,0 +1,64 @@
+import numpy as np
+
+rng=np.random.default_rng()
+
+
+A=rng.integers(1,11,(3,3))
+B=rng.integers(1,11,(3,3))
+
+A
+
+#array([[8, 7, 2],
+#      [7, 3, 1],
+#      [8, 7, 7]])
+
+B
+
+#array([[1, 1, 5],
+#      [8, 4, 7],
+#      [6, 1, 5]])
+
+
+A<B
+
+#array([[False, False,  True],
+#      [ True,  True,  True],
+#      [False, False, False]])
+
+
+bool_indeksi= A<B
+
+bool_indeksi
+
+#array([[False, False,  True],
+#      [ True,  True,  True],
+#      [False, False, False]])
+
+
+np.argwhere(bool_indeksi)
+
+#array([[0, 2],
+#      [1, 0],
+#      [1, 1],
+#      [1, 2]])
+
+
+np.nonzero(bool_indeksi)
+
+#(array([0, 1, 1, 1]), array([2, 0, 1, 2]))
+
+
+A[np.nonzero(bool_indeksi)]
+
+#array([2, 7, 3, 1])
+
+
+np.flatnonzero(bool_indeksi)
+
+#array([2, 3, 4, 5])
+
+
+A[bool_indeksi]
+
+#array([1, 3, 1, 6])
+
