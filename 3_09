@@ -1,0 +1,72 @@
+import numpy as np
+
+rng=np.random.default_rng()
+
+v=rng.integers(-10,11,20)
+v
+#array([ -7,  10,  -2,   8,   2,  -8,  -2, -10,  -2,   0, -10,  -1,  -1,
+#        -6,   8,  10,  -2,  -9,  -8,  -4])
+
+
+
+#Izdvojiti sve elemente vektora koji su veci od svog sledbenika
+
+v[:-1]
+#array([ -7,  10,  -2,   8,   2,  -8,  -2, -10,  -2,   0, -10,  -1,  -1,
+#        -6,   8,  10,  -2,  -9,  -8])
+
+(v[:-1])[v[:-1]>v[1:]]
+#array([10,  8,  2, -2,  0, -1, 10, -2])
+
+
+
+#Izdvojiti sve elemente vektora koji su veci od svog prethodnika
+
+(v[1:])[v[1:]>v[:-1]]
+#array([10,  8, -2, -2,  0, -1,  8, 10, -8, -4])
+
+
+#Izdvojiti elemente vektora koji su veci od aritmeticke sredine svojih susednih elemenata
+
+v[v>np.hstack((v[1], (v[2:]+v[:-2])/2,v[-2]))]
+#array([10,  8,  2, -2, -2,  0, -1, -1,  8, 10, -4])
+
+
+
+#Proveriti da li vektor sadrzi neparan broj i da li su svi elementi vektora neparni
+
+(v[v%2==1]).size>0 #da li vektor sadrzi neparan broj
+#True
+
+a=np.array([2,4,-18])
+
+(a[a%2==1]).size>0
+#False
+
+(v[v%2==1]).size == v.size #da li su svi elementi vektora neparni
+#False
+
+b=np.array([3,5,-19])
+
+(b[b%2==1]).size == b.size
+#True
+
+
+
+#Izdvojiti sve neparne elemente na neparnim pozicijama u vektoru x
+
+v[1::2][v[1::2]%2==1]
+#array([-1, -9])
+
+
+
+#Izdvojiti sve proste brojeve u vektoru
+
+def f(n): 
+  n=abs(n)
+  if n==2 or n==3: 
+    return True
+  return not(n==1 or n%2==0 or n%3==0)
+
+v[np.vectorize(f)(v)] #vectorize broadcastuje funkciju na vektor v
+#array([-7, -2,  2, -2, -2, -2])
