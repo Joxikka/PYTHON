@@ -1,0 +1,19 @@
+import numpy as np
+
+from numpy.polynomial import Polynomial as Polinom #Polinom je skracenica od numpy.polynomial.Polynomial
+
+Polinom([-1,3,1])
+#x↦-1.0+3.0x+1.0x^2
+
+Polinom([-1,1])*Polinom([-3,1]) #mnozenje dva polinoma
+#x↦3.0−4.0x+1.0x^2
+
+p=Polinom([1,1])
+p**2                #kvadrat binoma
+#x↦1.0+2.0x+1.0x^2
+
+Polinom([-1,1])*Polinom([1,1])     #razlika kvadrata
+#x↦-1.0+0.0x+1.0x^2
+
+Polinom([2])
+#x↦2.0
