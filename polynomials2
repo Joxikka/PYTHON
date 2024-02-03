@@ -1,0 +1,31 @@
+import numpy as np
+from numpy.polynomial import Polynomial as Polinom
+
+
+x=[2,5,6,7]
+y=[8,13,23,17]
+
+
+L=Polinom(0)
+L
+#x↦0.0
+
+
+for i in range(len(x)):
+  Li=Polinom([1])
+  for j in range(len(x)):
+    if(j != i):
+     Li = Li*Polinom([-x[j],1])/(x[i]-x[j])
+  L=L+y[i]*Li
+
+
+
+print(L(2)) #8
+print(L(5)) #13
+print(L(6)) #23
+print(L(7)) #17
+
+#7.999999999999915
+#12.999999999999773
+#22.999999999999602
+#16.99999999999949
