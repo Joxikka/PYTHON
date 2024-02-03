@@ -1,0 +1,99 @@
+import numpy as np
+
+rng =np.random.default_rng()
+
+np.eye(4)         #kreira jedinicnu matricu dimenzija 4x4
+#array([[1., 0., 0., 0.],
+#       [0., 1., 0., 0.],
+#       [0., 0., 1., 0.],
+#       [0., 0., 0., 1.]])
+
+A = np.array([[1,1,1],[2,0,-1],[6,0,-5]])
+A
+#array([[ 1,  1,  1],
+#       [ 2,  0, -1],
+#       [ 6,  0, -5]])
+
+B = np.array([[36],[-17],[7]])
+B
+#array([[ 36],
+#       [-17],
+#       [  7]])
+
+Ainv = np.linalg.inv(A)       #kreira inverznu matricu od matrice A
+
+Ainv
+#array([[ 0.  ,  1.25, -0.25],
+#       [ 1.  , -2.75,  0.75],
+#       [ 0.  ,  1.5 , -0.5 ]])
+
+Ainv@B
+#array([[-23.],
+#       [ 88.],
+#       [-29.]])
+
+np.linalg.solve(A,B) #resava A*X = B
+#array([[-23.],
+#       [ 88.],
+#       [-29.]])
+
+A@Ainv
+#array([[ 1.00000000e+00, -2.22044605e-16,  1.11022302e-16],
+#       [ 0.00000000e+00,  1.00000000e+00,  0.00000000e+00],
+#       [ 0.00000000e+00, -4.44089210e-16,  1.00000000e+00]])
+
+Ainv@A
+#array([[ 1.00000000e+00,  0.00000000e+00,  5.55111512e-17],
+#       [-4.44089210e-16,  1.00000000e+00, -2.22044605e-16],
+#       [ 2.22044605e-16,  0.00000000e+00,  1.00000000e+00]])
+
+C = np.array([[1,5],[6,7]])
+C
+#array([[1, 5],
+#       [6, 7]])
+
+np.linalg.solve(A,C)     #ne mozemo pomnoziti matrice zbog neodgovarajuceg shape-a
+#ValueError                                Traceback (most recent call last)
+#<ipython-input-14-fea5e46490d4> in <module>
+#----> 1 np.linalg.solve(A,C)
+#<__array_function__ internals> in solve(*args, **kwargs)
+#/usr/local/lib/python3.7/dist-packages/numpy/linalg/linalg.py in solve(a, b)
+#    391     signature = 'DD->D' if isComplexType(t) else 'dd->d'
+#    392     extobj = get_linalg_error_extobj(_raise_linalgerror_singular)
+#--> 393     r = gufunc(a, b, signature=signature, extobj=extobj)
+#    394 
+#    395     return wrap(r.astype(result_t, copy=False))
+#ValueError: solve: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (m,m),(m,n)->(m,n) (size 2 is different from 3)
+
+
+(A@Ainv == np.eye(3)).prod()
+#0
+
+A@Ainv is np.eye(3)
+#False
+
+a=3
+b=3
+
+a is b
+#True
+
+id(a)
+#11126752
+
+id(b)
+#11126752
+
+b=4
+id(b)
+#11126784
+
+D = A.copy()
+A is D
+#False
+
+id(A)
+#140399654118576
+
+id(D)
+#140399610411504
