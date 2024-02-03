@@ -1,0 +1,97 @@
+import numpy as np
+
+rng=np.random.default_rng()
+
+a=rng.integers(-10,11,15)
+a
+#array([  6,  -5,  -2,  -8, -10,   7,  -8,   3,  -5,  -5,  10,   7,  -9,
+#         5,   6])
+
+a[::2]=-100
+a
+#array([-100,   -5, -100,   -8, -100,    7, -100,    3, -100,   -5, -100,
+#          7, -100,    5, -100])
+
+b=np.arange(100,108)
+b
+#array([100, 101, 102, 103, 104, 105, 106, 107])
+
+a,b
+#(array([-100,   -5, -100,   -8, -100,    7, -100,    3, -100,   -5, -100,
+#           7, -100,    5, -100]),
+# array([100, 101, 102, 103, 104, 105, 106, 107]))
+
+a[::2]=b
+a
+#array([100,  -5, 101,  -8, 102,   7, 103,   3, 104,  -5, 105,   7, 106,
+#         5, 107])
+
+a[0]=-100
+b
+#array([100, 101, 102, 103, 104, 105, 106, 107])
+
+a
+#array([-100,   -5,  101,   -8,  102,    7,  103,    3,  104,   -5,  105,
+#          7,  106,    5,  107])
+
+
+
+
+indeksi=np.ones((2,3),dtype=np.int64)
+indeksi
+#array([[1, 1, 1],
+#       [1, 1, 1]])
+
+niz=np.array([-10,10])
+niz
+#array([-10,  10])
+
+niz[indeksi] 
+#array([[10, 10, 10],
+#       [10, 10, 10]])
+
+niz[0], niz[1]
+#(-10, 10)
+
+mat=np.array([[11,12],[21,22]])
+mat
+#array([[11, 12],
+#       [21, 22]])
+
+mat[indeksi]
+#array([[[21, 22],
+#        [21, 22],
+#        [21, 22]],
+
+#      [[21, 22],
+#      [21, 22],
+#     [21, 22]]])
+
+mat[1]
+#array([21, 22])
+
+#Za svaku dimenziju se moze navesti niz indeksa. Svi ti nizovi moraju biti istog shape-a i to ce biti shape rezultujuceg niza
+
+M=rng.integers(0,10,(4,4))
+M
+#array([[7, 2, 9, 2],
+#       [4, 9, 3, 4],
+#       [7, 0, 3, 0],
+#       [4, 5, 6, 9]])
+
+
+# glavna dijagonala matrice
+M[np.arange(0,4),np.arange(0,4)]
+#array([7, 9, 3, 9])
+
+#sporedna dijagonala - odozgo na dole
+M[np.arange(0,4),np.arange(3,-1,-1)]
+#array([2, 3, 0, 4])
+
+#sporedna dijagonala - sleva na desno
+M[np.arange(3,-1,-1),np.arange(0,4)]
+#array([4, 0, 3, 2])
+
+
+
+
