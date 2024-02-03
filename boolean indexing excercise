@@ -1,0 +1,71 @@
+import numpy as np
+
+rng=np.random.default_rng()
+
+A=rng.integers(1,11,(3,3))
+B=rng.integers(1,11,(3,3))
+
+A
+#array([[2, 4, 7],
+#       [3, 2, 2],
+#       [1, 4, 2]])
+
+B
+#array([[2, 8, 3],
+#       [7, 5, 1],
+#       [2, 1, 3]])
+
+A < B
+#array([[False,  True, False],
+#       [ True,  True, False],
+#       [ True, False,  True]])
+
+bool_indeksi= A<B
+bool_indeksi
+#array([[False,  True, False],
+#       [ True,  True, False],
+#       [ True, False,  True]])
+
+np.argwhere(bool_indeksi)  #vraca indekse svog argumenta gde se nalaze true vrednosti
+#array([[0, 1],
+#       [1, 0],
+#       [1, 1],
+#       [2, 0],
+#       [2, 2]])
+
+np.nonzero(bool_indeksi) #radi isto kao i np.argwhere samo vraca tuple
+#(array([0, 1, 1, 2, 2]), array([1, 0, 1, 0, 2]))
+
+A[np.nonzero(bool_indeksi)]
+#array([4, 3, 2, 1, 2])
+
+np.flatnonzero(bool_indeksi)
+#array([1, 3, 4, 6, 8])
+
+A[bool_indeksi]  #vraca jednodimenzionalni niz (A i bool_indeksi moraju biti istog shape-a) ciji su elementi elementi A cija je vrednost true
+#array([4, 3, 2, 1, 2])
+
+
+
+
+v=rng.integers(-10,11,20)
+v
+#array([  2, -10, -10,   5,   1,  -2,  -3,  10,  -2,  -7,  -8,   5,   3,
+#         3,   4,  -1,  -5,  -5,  -4,   5])
+
+v[v<0]
+#array([-10, -10,  -2,  -3,  -2,  -7,  -8,  -1,  -5,  -5,  -4])
+
+v[v%2==0]
+#array([  2, -10, -10,  -2,  10,  -2,  -8,   4,  -4])
+
+v[np.logical_and(v%3==0, v>0)]
+#array([3, 3])
+
+v[v%4!=0]
+#array([  2, -10, -10,   5,   1,  -2,  -3,  10,  -2,  -7,   5,   3,   3,
+#        -1,  -5,  -5,   5])
+
+np.flatnonzero(v==v.max())
+#array([7])
+
