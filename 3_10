@@ -1,0 +1,66 @@
+import numpy as np
+
+rng=np.random.default_rng()
+
+#3. zadatak
+
+M=rng.integers(1,11,(6,6))
+M
+#array([[ 3,  2,  3, 10,  8,  8],
+#       [10,  6,  2,  1,  7,  2],
+#       [ 3,  2, 10,  2,  5,  3],
+#       [ 1,  2,  7, 10,  9,  1],
+#       [ 1, 10,  2,  2,  1,  7],
+#       [ 1,  6,  6,  6,  1,  9]])
+
+
+#a) Sva pojavljivanja najveceg elementa matrice uvecati za jedan
+M[M==M.max()] += 1
+M
+#array([[ 3,  2,  3, 11,  8,  8],
+#       [11,  6,  2,  1,  7,  2],
+#       [ 3,  2, 11,  2,  5,  3],
+#       [ 1,  2,  7, 11,  9,  1],
+#       [ 1, 11,  2,  2,  1,  7],
+#       [ 1,  6,  6,  6,  1,  9]])
+
+
+
+#b) Odrediti elemente sa glavne dijagonale koji su veci od prosecne vrednosti elemenata cele matrice
+A = M[np.arange(0,6),np.arange(0,6)]
+A[A > M.mean()]
+#array([ 6, 11, 11,  9])
+
+
+
+#c) Izdvojiti sve kolone cija je suma veca od prosecne sume po kolonama
+Sk = M.sum(axis=0) #sume po kolonama
+Sk
+#array([20, 29, 31, 33, 31, 30])
+
+Sk.mean() #prosecna suma po kolonama
+#29.0
+
+M[:,np.flatnonzero(Sk>Sk.mean())]
+#array([[ 3, 11,  8,  8],
+#       [ 2,  1,  7,  2],
+#       [11,  2,  5,  3],
+#       [ 7, 11,  9,  1],
+#       [ 2,  2,  1,  7],
+#       [ 6,  6,  1,  9]])
+
+
+
+
+
+#Izdvojiti sve vrste cija je suma veca od prosecne sume po vrstama
+Sv = M.sum(axis=1) #sume po vrstama
+Sv
+#array([35, 29, 26, 31, 24, 29])
+
+Sv.mean() #prosecna suma po vrstama
+#29.0
+
+M[np.flatnonzero(Sv>Sv.mean()),:]
+#array([[ 3,  2,  3, 11,  8,  8],
+#       [ 1,  2,  7, 11,  9,  1]])
